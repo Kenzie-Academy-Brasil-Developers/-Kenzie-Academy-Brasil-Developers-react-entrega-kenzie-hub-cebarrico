@@ -24,7 +24,7 @@ export const LoginPage = () => {
     async function makeLogin() {
       try {
         const response = await api.post("sessions", data);
-        console.log(response.data);
+
         const token = response.data.token;
         localStorage.setItem("token", JSON.stringify(token));
         navigate("/home");
