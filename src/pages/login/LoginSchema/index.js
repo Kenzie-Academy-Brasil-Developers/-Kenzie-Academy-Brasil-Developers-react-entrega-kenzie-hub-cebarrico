@@ -2,10 +2,8 @@ import * as yup from "yup";
 
 export const loginSchema = yup.object().shape({
   email: yup.string().required("Email obrigatório").email("Email inválido"),
-  password: yup
-    .string()
-    .required("Senha obrigatória")
-    .min(8, "Tem menos de 8 caracteres"),
+  password: yup.string().required("Senha obrigatória"),
+  // .min(8, "Tem menos de 8 caracteres"),
 });
 
 // .matches(/(?=.*?[A-Z])/, "Necessario uma letra maiuscula")

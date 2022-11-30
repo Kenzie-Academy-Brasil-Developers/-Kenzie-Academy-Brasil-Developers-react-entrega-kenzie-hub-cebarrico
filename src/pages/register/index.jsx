@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "./RegisterSchema";
 import { FormDefault } from "../../styles/form";
 import { Nav } from "./Nav/nav";
+import { api } from "../../services/api";
 
 import "./style.css";
 
@@ -22,8 +23,16 @@ export const RegisterPage = () => {
     mode: "onChange",
   });
   function registerRequest(data) {
-    console.log(data);
-    navigate("/");
+    async function makeRegister() {
+      try {
+        const response = await api.post("users", data);
+
+        navigate("/");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    makeRegister();
   }
   return (
     <main>
@@ -34,6 +43,15 @@ export const RegisterPage = () => {
       <FormDefault onSubmit={handleSubmit(registerRequest)}>
         <h1>Crie sua conta</h1>
         <span> Rapido e grátis, vamos nessa</span>
+        <div>
+          <label name="">Nome</label>
+          <InputDefault
+            type="text"
+            placeholder="Coloque seu nome"
+            {...register("name")}
+          />
+          {errors.email?.message && <p>{errors.email.message}</p>}
+        </div>
         <div>
           <label name="">Email</label>
           <InputDefault
@@ -53,9 +71,11 @@ export const RegisterPage = () => {
           {errors.password?.message && <p>{errors.password.message}</p>}
         </div>
         <div>
-          <label name="">Confirme sua senha</label>
+          <label name="passwordConfirmation">Confirme sua senha</label>
           <InputDefault type="password" placeholder="Coloque sua senha" />
-          {errors.password?.message && <p>{errors.password.message}</p>}
+          {errors.passwordConfirmation?.message && (
+            <p>{errors.passwordConfirmation.message}</p>
+          )}
         </div>
         <div>
           <label name="">Bio</label>

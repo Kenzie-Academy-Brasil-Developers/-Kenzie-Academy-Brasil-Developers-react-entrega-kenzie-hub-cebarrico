@@ -10,5 +10,7 @@ export const ButtonDefault = styled.button`
   border: 1px solid var(--color-primary);
   border-radius: 4px;
 
+  margin-bottom: 32px;
+
   cursor: pointer;
 `;

@@ -21,16 +21,18 @@ export const LoginPage = () => {
   });
 
   function login(data) {
-    // async function makeLogin() {
-    //   try {
-    //     const response = await api.post("sessions", data);
-    //     console.log(response);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-    // makeLogin();
-    console.log(data);
+    async function makeLogin() {
+      try {
+        const response = await api.post("sessions", data);
+
+        const token = response.data.token;
+        localStorage.setItem("token", JSON.stringify(token));
+        navigate("/home");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    makeLogin();
   }
 
   return (
