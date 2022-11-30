@@ -64,7 +64,7 @@ export const FormDefault = styled.form`
     margin-top: 17px;
   }
 
-  button:nth-child(1) {
+  button:nth-child(2) {
     background-color: var(--color-grey-1);
     margin-top: 0px;
     border: 1px solid var(--color-grey-1);
