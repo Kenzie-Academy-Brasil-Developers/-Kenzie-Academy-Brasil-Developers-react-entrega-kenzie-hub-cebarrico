@@ -32,6 +32,14 @@ export const FormDefault = styled.form`
     display: flex;
     flex-direction: column;
     border: none;
+    position: relative;
+  }
+
+  i {
+    position: absolute;
+    right: 3%;
+    top: 58%;
+    cursor: pointer;
   }
 
   p {
