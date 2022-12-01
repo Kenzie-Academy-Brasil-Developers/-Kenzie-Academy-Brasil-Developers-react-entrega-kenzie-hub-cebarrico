@@ -1,14 +1,19 @@
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import { useNavigate } from "react-router-dom";
+
+import { api } from "../../services/api";
+
+import { loginSchema } from "./LoginSchema";
 import { FormDefault } from "../../styles/form";
 import { ButtonDefault } from "../../styles/button";
 import { InputDefault } from "../../styles/input";
+import { Input } from "../../components/Inputs";
+
 import "./style.css";
 import logo from "../../assets/img/Logo.png";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "./LoginSchema";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
+
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -36,7 +41,8 @@ export const LoginPage = () => {
         console.log(err);
       }
     }
-    makeLogin();
+    console.log(data);
+    // makeLogin();
   }
 
   return (
@@ -53,6 +59,12 @@ export const LoginPage = () => {
           />
           {errors.email?.message && <p>{errors.email.message}</p>}
         </div>
+        {/* <Input
+          type="email"
+          label="Email"
+          placeholder="Coloque seu email"
+          register={register("email")}
+        /> */}
         <div>
           <label name="">Password</label>
           <InputDefault
