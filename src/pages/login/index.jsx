@@ -36,7 +36,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <main>
+    <main style={{ height: "100vh" }}>
       <img src={logo} alt="kenzie hub" />
       <FormDefault onSubmit={handleSubmit(login)}>
         <h1>Login</h1>
