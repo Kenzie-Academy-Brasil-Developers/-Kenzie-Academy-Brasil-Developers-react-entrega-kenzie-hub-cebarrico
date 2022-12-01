@@ -21,12 +21,19 @@ export const FormDefault = styled.form`
 
   div {
     width: 90%;
-    margin-bottom: 27px;
+    margin-bottom: 7px;
     display: flex;
     flex-direction: column;
   }
-  div:last-child {
+
+  fieldset {
+    width: 90%;
+    margin-bottom: 7px;
+    display: flex;
+    flex-direction: column;
+    border: none;
   }
+
   p {
     color: var(--negative);
     font-size: 10px;
@@ -62,11 +69,5 @@ export const FormDefault = styled.form`
     padding-left: 15px;
 
     margin-top: 17px;
-  }
-
-  button:nth-child(2) {
-    background-color: var(--color-grey-1);
-    margin-top: 0px;
-    border: 1px solid var(--color-grey-1);
   }
 `;

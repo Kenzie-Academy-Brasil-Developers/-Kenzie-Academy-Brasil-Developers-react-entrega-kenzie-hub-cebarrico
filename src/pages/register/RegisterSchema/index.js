@@ -11,10 +11,10 @@ export const registerSchema = yup.object().shape({
     .matches(/(?=.*?[a-z])/, "Necessario uma letra minuscula")
     .matches(/(?=.*?[0-9])/, "Necessario pelo menos um numero")
     .matches(/(?=.*?[#?!@$%^&*-])/, "Necessario um caracter especial"),
-  // passwordConfirmation: yup
-  //   .string()
-  //   .required("Confirme sua senha")
-  //   .oneOf([yup.ref("password")], "Passwords must match"),
+  passwordConfirmation: yup
+    .string()
+    .required("Confirme sua senha")
+    .oneOf([yup.ref("password")], "As senhas sao diferentes"),
 
   bio: yup.string().required("Insira uma brevre descricao"),
   contact: yup.string().required("Insira um contato"),

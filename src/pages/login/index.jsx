@@ -1,14 +1,18 @@
-import { FormDefault } from "../../styles/form";
-import { ButtonDefault } from "../../styles/button";
-import { InputDefault } from "../../styles/input";
-import "./style.css";
-import logo from "../../assets/img/Logo.png";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "./LoginSchema";
+
 import { api } from "../../services/api";
+
 import { toast } from "react-toastify";
+
+import { FormDefault } from "../../styles/form";
+import { loginSchema } from "./LoginSchema";
+import { ButtonDefault, ButtonDefaultBlack } from "../../styles/button";
+import { InputDefault } from "../../styles/input";
+import { Input } from "../../components/Inputs";
+import "./style.css";
+import logo from "../../assets/img/Logo.png";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -44,29 +48,28 @@ export const LoginPage = () => {
       <img src={logo} alt="kenzie hub" />
       <FormDefault onSubmit={handleSubmit(login)}>
         <h1>Login</h1>
-        <div>
-          <label name="">Email</label>
-          <InputDefault
-            type="email"
-            placeholder="Coloque seu email"
-            {...register("email")}
-          />
-          {errors.email?.message && <p>{errors.email.message}</p>}
-        </div>
-        <div>
-          <label name="">Password</label>
-          <InputDefault
-            type="password"
-            placeholder="Coloque sua senha"
-            {...register("password")}
-          />
-          {errors.password?.message && <p>{errors.password.message}</p>}
-        </div>
+
+        <Input
+          type="email"
+          label="Email"
+          placeholder="Digite seu e-mail"
+          register={register("email")}
+        />
+        {errors.email?.message && <p>{errors.email.message}</p>}
+
+        <Input
+          type="password"
+          label="Senha"
+          placeholder="Digite sua senha"
+          register={register("password")}
+        />
+        {errors.password?.message && <p>{errors.password.message}</p>}
+
         <ButtonDefault type="submit">Entrar</ButtonDefault>
         <span>Ainda não possui uma conta?</span>
-        <ButtonDefault type="button" onClick={() => navigate("/cadastro")}>
+        <ButtonDefaultBlack type="button" onClick={() => navigate("/cadastro")}>
           Cadastrar
-        </ButtonDefault>
+        </ButtonDefaultBlack>
       </FormDefault>
     </main>
   );

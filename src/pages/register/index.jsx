@@ -9,6 +9,7 @@ import { FormDefault } from "../../styles/form";
 import { Nav } from "../../styles/nav";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
+import { Input } from "../../components/Inputs";
 
 import "./register.css";
 
@@ -46,58 +47,56 @@ export const RegisterPage = () => {
       <FormDefault onSubmit={handleSubmit(registerRequest)}>
         <h1>Crie sua conta</h1>
         <span> Rapido e grátis, vamos nessa</span>
-        <div>
-          <label name="">Nome</label>
-          <InputDefault
-            type="text"
-            placeholder="Coloque seu nome"
-            {...register("name")}
-          />
-          {errors.name?.message && <p>{errors.name.message}</p>}
-        </div>
-        <div>
-          <label name="">Email</label>
-          <InputDefault
-            type="email"
-            placeholder="Coloque seu email"
-            {...register("email")}
-          />
-          {errors.email?.message && <p>{errors.email.message}</p>}
-        </div>
-        <div>
-          <label name="">Senha</label>
-          <InputDefault
-            type="password"
-            placeholder="Coloque sua senha"
-            {...register("password")}
-          />
-          {errors.password?.message && <p>{errors.password.message}</p>}
-        </div>
-        <div>
-          <label name="passwordConfirmation">Confirme sua senha</label>
-          <InputDefault type="password" placeholder="Coloque sua senha" />
-          {errors.passwordConfirmation?.message && (
-            <p>{errors.passwordConfirmation.message}</p>
-          )}
-        </div>
-        <div>
-          <label name="">Bio</label>
-          <InputDefault
-            type="text"
-            placeholder="Coloque sua senha"
-            {...register("bio")}
-          />
-          {errors.bio?.message && <p>{errors.bio.message}</p>}
-        </div>
-        <div>
-          <label name="">Contato</label>
-          <InputDefault
-            type="text"
-            placeholder="Coloque sua senha"
-            {...register("contact")}
-          />
-          {errors.contact?.message && <p>{errors.contact.message}</p>}
-        </div>
+        <Input
+          type="text"
+          label="Nome"
+          placeholder="Digite seu nome"
+          register={register("name")}
+        />
+        {errors.name?.message && <p>{errors.name.message}</p>}
+
+        <Input
+          type="email"
+          label="Email"
+          placeholder="Digite seu e-mail"
+          register={register("email")}
+        />
+        {errors.email?.message && <p>{errors.email.message}</p>}
+
+        <Input
+          type="password"
+          label="Senha"
+          placeholder="Digite sua senha"
+          register={register("password")}
+        />
+        {errors.password?.message && <p>{errors.password.message}</p>}
+
+        <Input
+          type="password"
+          label="Confirme sua senha"
+          placeholder="Confirme sua senha"
+          register={register("passwordConfirmation")}
+        />
+        {errors.passwordConfirmation?.message && (
+          <p>{errors.passwordConfirmation.message}</p>
+        )}
+
+        <Input
+          type="text"
+          label="Bio"
+          placeholder="Digite sua bio"
+          register={register("bio")}
+        />
+        {errors.bio?.message && <p>{errors.bio.message}</p>}
+
+        <Input
+          type="text"
+          label="Contato"
+          placeholder="Digite seu contato"
+          register={register("contact")}
+        />
+        {errors.contact?.message && <p>{errors.contact.message}</p>}
+
         <div>
           <label name="">Selecionar módulo</label>
           <select {...register("course_module")}>
@@ -109,10 +108,8 @@ export const RegisterPage = () => {
             <option value="Quintp modulo">Quinto Módulo</option>
             <option value="Sexto modulo">Sexto Módulo</option>
           </select>
-          {errors.course_module?.message && (
-            <p>{errors.course_module.message}</p>
-          )}
         </div>
+        {errors.course_module?.message && <p>{errors.course_module.message}</p>}
         <ButtonDefault type="submit">Entrar</ButtonDefault>
       </FormDefault>
     </main>
