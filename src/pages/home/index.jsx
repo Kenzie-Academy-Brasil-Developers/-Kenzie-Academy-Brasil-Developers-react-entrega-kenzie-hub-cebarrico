@@ -27,9 +27,6 @@ export const HomePage = () => {
     getUser();
   }, []);
 
-  if (!token) {
-    navigate("/");
-  }
   return (
     <main>
       <NavHeader path="login" />

@@ -19,7 +19,7 @@ export const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isDirty, isValid },
   } = useForm({
     mode: "onBlur",
     resolver: yupResolver(registerSchema),
@@ -110,7 +110,9 @@ export const RegisterPage = () => {
           </select>
         </div>
         {errors.course_module?.message && <p>{errors.course_module.message}</p>}
-        <ButtonDefault type="submit">Entrar</ButtonDefault>
+        <ButtonDefault type="submit" disabled={!isDirty || !isValid}>
+          Entrar
+        </ButtonDefault>
       </FormDefault>
     </main>
   );

@@ -13,6 +13,11 @@ export const ButtonDefault = styled.button`
   margin-bottom: 32px;
 
   cursor: pointer;
+
+  &:disabled {
+    border: 1px solid var(--color-primary-negative);
+    background-color: var(--color-primary-negative);
+  }
 `;
 
 export const ButtonDefaultBlack = styled.button`
