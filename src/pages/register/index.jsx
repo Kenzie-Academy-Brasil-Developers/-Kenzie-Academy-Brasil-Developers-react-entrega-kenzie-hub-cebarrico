@@ -8,8 +8,9 @@ import { registerSchema } from "./RegisterSchema";
 import { FormDefault } from "../../styles/form";
 import { Nav } from "./Nav/nav";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
-import "./style.css";
+import "./register.css";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -19,19 +20,21 @@ export const RegisterPage = () => {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
+    mode: "onBlur",
     resolver: yupResolver(registerSchema),
-    mode: "onChange",
   });
   function registerRequest(data) {
     async function makeRegister() {
       try {
         const response = await api.post("users", data);
+        toast.success("Conta criada com sucesso!");
 
         navigate("/");
       } catch (err) {
-        console.log(err);
+        toast.error(err.response.data.message);
       }
     }
+    // console.log(data);
     makeRegister();
   }
   return (
@@ -50,7 +53,7 @@ export const RegisterPage = () => {
             placeholder="Coloque seu nome"
             {...register("name")}
           />
-          {errors.email?.message && <p>{errors.email.message}</p>}
+          {errors.name?.message && <p>{errors.name.message}</p>}
         </div>
         <div>
           <label name="">Email</label>
