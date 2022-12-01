@@ -45,6 +45,7 @@ export const FormDefault = styled.form`
   span {
     color: var(--color-grey-1);
     font-size: 12px;
+
     margin-bottom: 22px;
   }
   span:last-child {
@@ -69,5 +70,25 @@ export const FormDefault = styled.form`
     padding-left: 15px;
 
     margin-top: 17px;
+  }
+  a {
+    width: 90%;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-grey-1);
+    color: var(--color-grey-0);
+
+    text-decoration: none;
+
+    border: 1px solid var(--color-grey-1);
+    border-radius: 4px;
+
+    margin-bottom: 32px;
+
+    cursor: pointer;
   }
 `;

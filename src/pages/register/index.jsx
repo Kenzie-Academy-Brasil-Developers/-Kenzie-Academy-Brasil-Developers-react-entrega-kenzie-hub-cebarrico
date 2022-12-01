@@ -2,7 +2,7 @@ import { ButtonDefault } from "../../styles/button";
 import { InputDefault } from "../../styles/input";
 import logo from "../../assets/img/Logo.png";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "./RegisterSchema";
 import { FormDefault } from "../../styles/form";
@@ -42,7 +42,7 @@ export const RegisterPage = () => {
     <main>
       <Nav>
         <img src={logo} alt="kenzie hub" />
-        <button onClick={() => navigate("/")}>Voltar</button>
+        <Link to={"/"}>Voltar</Link>
       </Nav>
       <FormDefault onSubmit={handleSubmit(registerRequest)}>
         <h1>Crie sua conta</h1>

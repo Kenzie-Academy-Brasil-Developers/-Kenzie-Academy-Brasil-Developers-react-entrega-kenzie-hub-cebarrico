@@ -23,6 +23,26 @@ export const Nav = styled.div`
 
     cursor: pointer;
   }
+  a {
+    width: 80px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-grey-3);
+    border: none;
+    border-radius: 4px;
+
+    color: var(--color-grey-0);
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+  }
 `;
 
 export const NavUser = styled.div`

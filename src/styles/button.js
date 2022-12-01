@@ -19,18 +19,3 @@ export const ButtonDefault = styled.button`
     background-color: var(--color-primary-negative);
   }
 `;
-
-export const ButtonDefaultBlack = styled.button`
-  width: 90%;
-  height: 38px;
-
-  background-color: var(--color-grey-1);
-  color: var(--color-grey-0);
-
-  border: 1px solid var(--color-grey-1);
-  border-radius: 4px;
-
-  margin-bottom: 32px;
-
-  cursor: pointer;
-`;
