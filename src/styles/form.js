@@ -25,8 +25,14 @@ export const FormDefault = styled.form`
     display: flex;
     flex-direction: column;
   }
-  div:last-child {
+  fieldset {
+    width: 90%;
+    margin-bottom: 27px;
+    display: flex;
+    flex-direction: column;
+    border: none;
   }
+
   p {
     color: var(--negative);
     font-size: 10px;
