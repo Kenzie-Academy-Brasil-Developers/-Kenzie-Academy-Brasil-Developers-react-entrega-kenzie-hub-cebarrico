@@ -7,14 +7,16 @@ import { NavHeader } from "../../components/Nav";
 import { UserHeader } from "../../components/UserHeader";
 import { UserMain } from "../../components/UserMain";
 
-const token = localStorage.getItem("token");
-
 export const HomePage = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const [user, setUser] = useState({});
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
     async function getUser() {
       try {
         const response = await api.get(`users/${currentUser}`);

@@ -35,7 +35,7 @@ export const RegisterPage = () => {
         toast.error(err.response.data.message);
       }
     }
-    // console.log(data);
+
     makeRegister();
   }
   return (
