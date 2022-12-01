@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "./RegisterSchema";
 import { FormDefault } from "../../styles/form";
-import { Nav } from "./Nav/nav";
+import { Nav } from "../../styles/nav";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
@@ -102,7 +102,12 @@ export const RegisterPage = () => {
           <label name="">Selecionar módulo</label>
           <select {...register("course_module")}>
             <option value="">Selecionar módulo</option>
-            <option value="primeiro modulo">Primeiro Módulo</option>
+            <option value="Primeiro modulo">Primeiro Módulo</option>
+            <option value="Segundo modulo">Segundo Módulo</option>
+            <option value="Terceiro modulo">Terceiro Módulo</option>
+            <option value="Quarto modulo">Quarto Módulo</option>
+            <option value="Quintp modulo">Quinto Módulo</option>
+            <option value="Sexto modulo">Sexto Módulo</option>
           </select>
           {errors.course_module?.message && (
             <p>{errors.course_module.message}</p>

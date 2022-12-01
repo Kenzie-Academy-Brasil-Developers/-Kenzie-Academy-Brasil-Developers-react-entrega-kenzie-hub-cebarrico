@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "./LoginSchema";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -26,9 +27,12 @@ export const LoginPage = () => {
         const response = await api.post("sessions", data);
 
         const token = response.data.token;
+        const id = response.data.user.id;
         localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("user", JSON.stringify(id));
         navigate("/home");
       } catch (err) {
+        toast.error("Usuario ou senha incorretos");
         console.log(err);
       }
     }
