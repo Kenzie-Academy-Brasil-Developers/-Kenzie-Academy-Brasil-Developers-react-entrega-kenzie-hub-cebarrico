@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { api } from "../../services/api";
@@ -67,9 +67,13 @@ export const LoginPage = () => {
 
         <ButtonDefault type="submit">Entrar</ButtonDefault>
         <span>Ainda não possui uma conta?</span>
-        <ButtonDefaultBlack type="button" onClick={() => navigate("/cadastro")}>
+        <Link
+          to={"/cadastro"}
+          type="button"
+          onClick={() => navigate("/cadastro")}
+        >
           Cadastrar
-        </ButtonDefaultBlack>
+        </Link>
       </FormDefault>
     </main>
   );

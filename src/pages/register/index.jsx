@@ -2,7 +2,7 @@ import { ButtonDefault } from "../../styles/button";
 import { InputDefault } from "../../styles/input";
 import logo from "../../assets/img/Logo.png";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "./RegisterSchema";
 import { FormDefault } from "../../styles/form";
@@ -19,7 +19,7 @@ export const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isDirty, isValid },
   } = useForm({
     mode: "onBlur",
     resolver: yupResolver(registerSchema),
@@ -35,14 +35,14 @@ export const RegisterPage = () => {
         toast.error(err.response.data.message);
       }
     }
-    // console.log(data);
+
     makeRegister();
   }
   return (
     <main>
       <Nav>
         <img src={logo} alt="kenzie hub" />
-        <button onClick={() => navigate("/")}>Voltar</button>
+        <Link to={"/"}>Voltar</Link>
       </Nav>
       <FormDefault onSubmit={handleSubmit(registerRequest)}>
         <h1>Crie sua conta</h1>
@@ -110,7 +110,9 @@ export const RegisterPage = () => {
           </select>
         </div>
         {errors.course_module?.message && <p>{errors.course_module.message}</p>}
-        <ButtonDefault type="submit">Entrar</ButtonDefault>
+        <ButtonDefault type="submit" disabled={!isDirty || !isValid}>
+          Entrar
+        </ButtonDefault>
       </FormDefault>
     </main>
   );
