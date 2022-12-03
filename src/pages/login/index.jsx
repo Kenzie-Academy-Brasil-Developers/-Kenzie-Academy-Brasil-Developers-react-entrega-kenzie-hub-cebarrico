@@ -11,8 +11,9 @@ import { loginSchema } from "./LoginSchema";
 import { ButtonDefault, ButtonDefaultBlack } from "../../styles/button";
 import { InputDefault } from "../../styles/input";
 import { Input } from "../../components/Inputs";
-import "./style.css";
+
 import logo from "../../assets/img/Logo.png";
+import { LogoStyle } from "../../styles/logo";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export const LoginPage = () => {
 
   return (
     <main style={{ height: "100vh" }}>
-      <img src={logo} alt="kenzie hub" />
+      <LogoStyle src={logo} alt="kenzie hub" />
       <FormDefault onSubmit={handleSubmit(login)}>
         <h1>Login</h1>
 

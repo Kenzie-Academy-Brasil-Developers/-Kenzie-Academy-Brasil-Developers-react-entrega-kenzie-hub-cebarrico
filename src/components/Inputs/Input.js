@@ -1,4 +1,6 @@
-input {
+import styled from "styled-components";
+
+export const InputStyle = styled.input`
   width: 100%;
   height: 38px;
 
@@ -11,8 +13,8 @@ input {
   padding-left: 15px;
 
   margin-top: 17px;
-}
 
-input:focus {
-  outline: 1px solid var(--color-grey-0);
-}
+  &:focus {
+    outline: 1px solid var(--color-grey-0);
+  }
+`;

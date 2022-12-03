@@ -11,7 +11,7 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { Input } from "../../components/Inputs";
 
-import "./register.css";
+import { LogoStyle } from "../../styles/logo";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export const RegisterPage = () => {
   return (
     <main>
       <Nav>
-        <img src={logo} alt="kenzie hub" />
+        <LogoStyle src={logo} alt="kenzie hub" />
         <Link to={"/"}>Voltar</Link>
       </Nav>
       <FormDefault onSubmit={handleSubmit(registerRequest)}>
