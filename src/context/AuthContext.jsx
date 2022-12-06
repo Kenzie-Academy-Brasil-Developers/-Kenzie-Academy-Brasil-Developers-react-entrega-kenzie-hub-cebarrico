@@ -1,26 +1,54 @@
-import { createContext } from "react";
+import { createContext, useState, useEffect } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 import { api } from "../services/api";
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadUser() {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+      try {
+        const { data } = await api.get("/profile", {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(data);
+      } catch (error) {
+        console.log(error);
+        console.log(token);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadUser();
+  }, []);
 
   function login(data) {
     async function makeLogin() {
       try {
         const response = await api.post("sessions", data);
+        const { token, user: userResponse } = response.data;
 
-        const token = response.data.token;
-        const id = response.data.user.id;
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("user", JSON.stringify(id));
+        setUser(userResponse);
+        localStorage.setItem("token", token);
+
         navigate("/home");
       } catch (err) {
         toast.error("Usuario ou senha incorretos");
-        console.log(err);
+        console.error(err);
       }
     }
     makeLogin();
@@ -41,7 +69,7 @@ export const AuthProvider = ({ children }) => {
     makeRegister();
   }
   return (
-    <AuthContext.Provider value={{ login, registerRequest }}>
+    <AuthContext.Provider value={{ login, registerRequest, user, loading }}>
       {children}
     </AuthContext.Provider>
   );

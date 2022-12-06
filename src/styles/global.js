@@ -9,6 +9,10 @@ export const GlobalStyles = createGlobalStyle`
 
 }
 
+button{
+  cursor: pointer;
+}
+
 :root{
   --color-grey-0: #F8F9FA;
   --color-grey-1: #868E96;
@@ -27,6 +31,7 @@ export const GlobalStyles = createGlobalStyle`
 body{
   background-color: var(--color-grey-4);
 }
+
 main{
   display: flex;
   flex-direction: column;

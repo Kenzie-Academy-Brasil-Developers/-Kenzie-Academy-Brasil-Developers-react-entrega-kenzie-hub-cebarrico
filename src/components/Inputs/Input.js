@@ -7,6 +7,8 @@ export const InputStyle = styled.input`
   background-color: var(--color-grey-2);
   color: var(--color-grey-0);
 
+  caret-color: var(--color-primary);
+
   border: 1px solid var(--color-grey-2);
   border-radius: 4px;
 
@@ -15,6 +17,6 @@ export const InputStyle = styled.input`
   margin-top: 17px;
 
   &:focus {
-    outline: 1px solid var(--color-grey-0);
+    outline: 1px solid var(--color-primary);
   }
 `;
