@@ -1,20 +1,27 @@
+import { useForm } from "react-hook-form";
+import { useNavigate, Link } from "react-router-dom";
+
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "./RegisterSchema";
+
+// import { api } from "../../services/api";
+
+import { toast } from "react-toastify";
+
+import { FormDefault } from "../../styles/form";
+import { Nav } from "../../styles/nav";
+import { Input } from "../../components/Inputs";
 import { ButtonDefault } from "../../styles/button";
 import { InputDefault } from "../../styles/input";
 import logo from "../../assets/img/Logo.png";
-import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "./RegisterSchema";
-import { FormDefault } from "../../styles/form";
-import { Nav } from "../../styles/nav";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
-import { Input } from "../../components/Inputs";
-
 import { LogoStyle } from "../../styles/logo";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
+  const { registerRequest } = useContext(AuthContext);
 
   const {
     register,
@@ -24,20 +31,22 @@ export const RegisterPage = () => {
     mode: "onBlur",
     resolver: yupResolver(registerSchema),
   });
-  function registerRequest(data) {
-    async function makeRegister() {
-      try {
-        const response = await api.post("users", data);
-        toast.success("Conta criada com sucesso!");
 
-        navigate("/");
-      } catch (err) {
-        toast.error(err.response.data.message);
-      }
-    }
+  // function registerRequest(data) {
+  //   async function makeRegister() {
+  //     try {
+  //       const response = await api.post("users", data);
+  //       toast.success("Conta criada com sucesso!");
 
-    makeRegister();
-  }
+  //       navigate("/");
+  //     } catch (err) {
+  //       toast.error(err.response.data.message);
+  //     }
+  //   }
+
+  //   makeRegister();
+  // }
+
   return (
     <main>
       <Nav>

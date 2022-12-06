@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { api } from "../../services/api";
+// import { api } from "../../services/api";
+import { AuthContext } from "../../context/AuthContext";
 
 import { toast } from "react-toastify";
 
@@ -17,6 +19,7 @@ import { LogoStyle } from "../../styles/logo";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const {
     register,
@@ -26,23 +29,23 @@ export const LoginPage = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  function login(data) {
-    async function makeLogin() {
-      try {
-        const response = await api.post("sessions", data);
+  // function login(data) {
+  //   async function makeLogin() {
+  //     try {
+  //       const response = await api.post("sessions", data);
 
-        const token = response.data.token;
-        const id = response.data.user.id;
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("user", JSON.stringify(id));
-        navigate("/home");
-      } catch (err) {
-        toast.error("Usuario ou senha incorretos");
-        console.log(err);
-      }
-    }
-    makeLogin();
-  }
+  //       const token = response.data.token;
+  //       const id = response.data.user.id;
+  //       localStorage.setItem("token", JSON.stringify(token));
+  //       localStorage.setItem("user", JSON.stringify(id));
+  //       navigate("/home");
+  //     } catch (err) {
+  //       toast.error("Usuario ou senha incorretos");
+  //       console.log(err);
+  //     }
+  //   }
+  //   makeLogin();
+  // }
 
   return (
     <main style={{ height: "100vh" }}>
