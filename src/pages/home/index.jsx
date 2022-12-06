@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { api } from "../../services/api";
+import { AuthContext } from "../../context/AuthContext";
+import { TechProvider } from "../../context/TechContext";
 
 import { NavHeader } from "../../components/Nav";
 import { UserHeader } from "../../components/UserHeader";
@@ -10,30 +11,24 @@ import { UserMain } from "../../components/UserMain";
 export const HomePage = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  const [user, setUser] = useState({});
-  const currentUser = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
-    if (!token) {
-      navigate("/");
-    }
-    async function getUser() {
-      try {
-        const response = await api.get(`users/${currentUser}`);
-        const user = response.data;
-        setUser(user);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getUser();
-  }, []);
+  const { user, loading } = useContext(AuthContext);
 
-  return (
-    <main>
-      <NavHeader path="login" />
-      <UserHeader name={user.name} module={user.course_module} />
-      <UserMain />
-    </main>
-  );
+  if (loading) {
+    return null;
+  }
+
+  if (user) {
+    return (
+      <main>
+        <NavHeader path="login" />
+        <UserHeader name={user.name} module={user.course_module} />
+        <TechProvider>
+          <UserMain />
+        </TechProvider>
+      </main>
+    );
+  } else {
+    navigate("/");
+  }
 };

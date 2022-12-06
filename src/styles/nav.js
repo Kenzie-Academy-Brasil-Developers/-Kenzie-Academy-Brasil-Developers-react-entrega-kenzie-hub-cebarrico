@@ -53,6 +53,8 @@ export const NavUser = styled.div`
   width: 90%;
   max-width: 1200px;
 
+  padding: 30px 0;
+
   button {
     width: 80px;
     height: 32px;

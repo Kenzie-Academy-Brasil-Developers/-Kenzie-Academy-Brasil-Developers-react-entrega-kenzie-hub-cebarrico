@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./style.css";
+import { InputStyle } from "./Input";
 import { UilEye, UilEyeSlash } from "@iconscout/react-unicons";
 
 export const Input = ({ id, label, type, register, placeholder }) => {
@@ -14,7 +14,7 @@ export const Input = ({ id, label, type, register, placeholder }) => {
   return (
     <fieldset>
       <label name="">{label}</label>
-      <input
+      <InputStyle
         id={id}
         type={showPass ? "text" : type}
         placeholder={placeholder}

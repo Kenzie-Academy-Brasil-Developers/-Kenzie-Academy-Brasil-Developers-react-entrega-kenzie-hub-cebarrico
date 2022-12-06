@@ -1,9 +1,13 @@
-input {
+import styled from "styled-components";
+
+export const InputStyle = styled.input`
   width: 100%;
   height: 38px;
 
   background-color: var(--color-grey-2);
   color: var(--color-grey-0);
+
+  caret-color: var(--color-primary);
 
   border: 1px solid var(--color-grey-2);
   border-radius: 4px;
@@ -11,8 +15,8 @@ input {
   padding-left: 15px;
 
   margin-top: 17px;
-}
 
-input:focus {
-  outline: 1px solid var(--color-grey-0);
-}
+  &:focus {
+    outline: 1px solid var(--color-primary);
+  }
+`;

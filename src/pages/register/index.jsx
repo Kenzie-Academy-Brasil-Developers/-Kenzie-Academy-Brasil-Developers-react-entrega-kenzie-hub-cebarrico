@@ -1,20 +1,23 @@
-import { ButtonDefault } from "../../styles/button";
-import { InputDefault } from "../../styles/input";
-import logo from "../../assets/img/Logo.png";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
+
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "./RegisterSchema";
+
 import { FormDefault } from "../../styles/form";
 import { Nav } from "../../styles/nav";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
 import { Input } from "../../components/Inputs";
+import { ButtonDefault } from "../../styles/button";
 
-import "./register.css";
+import logo from "../../assets/img/Logo.png";
+import { LogoStyle } from "../../styles/logo";
 
 export const RegisterPage = () => {
   const navigate = useNavigate();
+  const { registerRequest } = useContext(AuthContext);
 
   const {
     register,
@@ -24,24 +27,11 @@ export const RegisterPage = () => {
     mode: "onBlur",
     resolver: yupResolver(registerSchema),
   });
-  function registerRequest(data) {
-    async function makeRegister() {
-      try {
-        const response = await api.post("users", data);
-        toast.success("Conta criada com sucesso!");
 
-        navigate("/");
-      } catch (err) {
-        toast.error(err.response.data.message);
-      }
-    }
-
-    makeRegister();
-  }
   return (
     <main>
       <Nav>
-        <img src={logo} alt="kenzie hub" />
+        <LogoStyle src={logo} alt="kenzie hub" />
         <Link to={"/"}>Voltar</Link>
       </Nav>
       <FormDefault onSubmit={handleSubmit(registerRequest)}>
@@ -111,7 +101,7 @@ export const RegisterPage = () => {
         </div>
         {errors.course_module?.message && <p>{errors.course_module.message}</p>}
         <ButtonDefault type="submit" disabled={!isDirty || !isValid}>
-          Entrar
+          Criar conta
         </ButtonDefault>
       </FormDefault>
     </main>
