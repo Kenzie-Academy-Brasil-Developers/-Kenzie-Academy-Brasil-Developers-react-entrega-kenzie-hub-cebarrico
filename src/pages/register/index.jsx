@@ -95,7 +95,7 @@ export const RegisterPage = () => {
             <option value="Segundo modulo">Segundo Módulo</option>
             <option value="Terceiro modulo">Terceiro Módulo</option>
             <option value="Quarto modulo">Quarto Módulo</option>
-            <option value="Quintp modulo">Quinto Módulo</option>
+            <option value="Quinto modulo">Quinto Módulo</option>
             <option value="Sexto modulo">Sexto Módulo</option>
           </select>
         </div>

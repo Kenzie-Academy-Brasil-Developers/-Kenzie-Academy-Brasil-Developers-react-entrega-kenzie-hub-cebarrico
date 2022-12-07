@@ -19,3 +19,13 @@ export const ButtonDefault = styled.button`
     background-color: var(--color-primary-negative);
   }
 `;
+
+export const CloseButton = styled.button`
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  font-size: 21px;
+  color: white;
+  background-color: var(--color-grey-3);
+`;

@@ -13,6 +13,9 @@ button{
   cursor: pointer;
 }
 
+fieldset{
+  border: none;
+}
 :root{
   --color-grey-0: #F8F9FA;
   --color-grey-1: #868E96;

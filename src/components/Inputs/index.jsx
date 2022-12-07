@@ -3,7 +3,7 @@ import { useState } from "react";
 import { InputStyle } from "./Input";
 import { UilEye, UilEyeSlash } from "@iconscout/react-unicons";
 
-export const Input = ({ id, label, type, register, placeholder }) => {
+export const Input = ({ id, label, type, register, placeholder, value }) => {
   const [showPass, setShowPass] = useState(false);
   const [icon, setIcon] = useState(false);
 
@@ -18,6 +18,7 @@ export const Input = ({ id, label, type, register, placeholder }) => {
         id={id}
         type={showPass ? "text" : type}
         placeholder={placeholder}
+        defaultValue={value}
         {...register}
       />
       {type === "password" && (
