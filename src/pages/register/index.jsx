@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -16,7 +16,6 @@ import logo from "../../assets/img/Logo.png";
 import { LogoStyle } from "../../styles/logo";
 
 export const RegisterPage = () => {
-  const navigate = useNavigate();
   const { registerRequest } = useContext(AuthContext);
 
   const {

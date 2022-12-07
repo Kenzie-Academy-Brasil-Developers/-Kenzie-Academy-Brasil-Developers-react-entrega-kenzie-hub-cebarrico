@@ -3,13 +3,13 @@ import { useState, useContext } from "react";
 import { MainTechList } from "./techList";
 import { ModalTech } from "../ModalAddTech";
 
-import { TechContext } from "../../../context/TechContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 export const TechList = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentTech, setCurrentTech] = useState({});
 
-  const { techs } = useContext(TechContext);
+  const { techs } = useContext(AuthContext);
 
   function openModal(tech) {
     setCurrentTech(tech);
@@ -21,9 +21,9 @@ export const TechList = () => {
 
   return (
     <MainTechList>
-      {techs.map((tech) => (
+      {techs?.map((tech) => (
         <li
-          key={tech.id}
+          key={tech.title}
           onClick={() => {
             setCurrentTech(tech);
             setModalIsOpen(true);
@@ -33,6 +33,7 @@ export const TechList = () => {
           <span>{tech.status}</span>
         </li>
       ))}
+
       {modalIsOpen ? (
         <ModalTech
           type="Tecnologia Detalhes"

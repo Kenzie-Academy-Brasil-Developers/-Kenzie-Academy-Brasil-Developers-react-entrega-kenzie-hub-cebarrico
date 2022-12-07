@@ -1,25 +1,27 @@
 import { useContext } from "react";
 
 import { TechContext } from "../../../../context/TechContext";
+import { AuthContext } from "../../../../context/AuthContext";
 
 import { UpdateContainer } from "./updataContainer";
 
-export const UpdateButton = ({ id }) => {
+export const UpdateButton = ({ close, id }) => {
   const { deleteTech, updateTech } = useContext(TechContext);
+  const { techs, setTech } = useContext(AuthContext);
 
-  function updateItem() {
-    updateTech(id);
+  function removeItem() {
+    const removeList = setTech(techs.filter((tech) => tech.id !== id));
   }
 
   function deleteItem() {
+    removeItem();
     deleteTech(id);
-    // window.location.reload();
-    console.log(id);
+    close();
   }
   return (
     <UpdateContainer>
       <button type="submit">Salvar alterações</button>
-      <button className="deleteBtm" onClick={deleteItem}>
+      <button type="button" className="deleteBtm" onClick={deleteItem}>
         Excluir
       </button>
     </UpdateContainer>

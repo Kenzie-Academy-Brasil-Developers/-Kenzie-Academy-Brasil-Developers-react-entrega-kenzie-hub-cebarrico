@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 
 import { api } from "../services/api";
 
@@ -7,9 +7,7 @@ import { AuthContext } from "./AuthContext";
 export const TechContext = createContext({});
 
 export const TechProvider = ({ children }) => {
-  const { user } = useContext(AuthContext);
-
-  const [techs, setTech] = useState(user.techs);
+  const { techs, setTech } = useContext(AuthContext);
 
   const token = localStorage.getItem("token");
 
@@ -20,21 +18,34 @@ export const TechProvider = ({ children }) => {
           authorization: `Bearer ${token}`,
         },
       });
-      window.location.reload();
+
+      setTech((oldTechs) => [...oldTechs, response.data]);
     } catch (error) {
       console.error(error);
     }
   }
-  async function updateTech(id, data) {
-    console.log(id);
-    console.log(data);
+  async function updateTech(data, id) {
+    const token = localStorage.getItem("token");
+
     try {
       const response = await api.put(`/users/techs/${id}`, data, {
         headers: {
           authorization: `Bearer ${token}`,
         },
       });
-      window.location.reload();
+
+      const newArr = techs.map((tech) => {
+        if (tech.id === id) {
+          return {
+            ...tech,
+            status: response.data.status,
+          };
+        } else {
+          return tech;
+        }
+      });
+
+      setTech(newArr);
     } catch (error) {
       console.error(error);
     }
@@ -47,7 +58,6 @@ export const TechProvider = ({ children }) => {
           authorization: `Bearer ${token}`,
         },
       });
-      window.location.reload();
     } catch (error) {
       console.error(error);
     }

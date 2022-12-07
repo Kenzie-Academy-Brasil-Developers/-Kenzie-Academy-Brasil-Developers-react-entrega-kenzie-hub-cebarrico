@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import { api } from "../../services/api";
-
 import { SectionUser } from "./sectionUser";
 
 export const UserHeader = ({ name, module }) => {

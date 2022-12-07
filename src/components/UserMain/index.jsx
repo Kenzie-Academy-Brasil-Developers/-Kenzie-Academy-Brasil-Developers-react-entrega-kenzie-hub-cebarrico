@@ -4,13 +4,13 @@ import { SectionMain } from "./sectionMain";
 import { TechList } from "./TechList";
 
 import { CreateTech } from "./CreateTech";
-import { TechContext } from "../../context/TechContext";
+
 import { AuthContext } from "../../context/AuthContext";
 
 export const UserMain = () => {
-  const { user } = useContext(AuthContext);
+  const { techs } = useContext(AuthContext);
 
-  const length = user.techs.length;
+  const length = techs.length;
 
   return (
     <SectionMain>

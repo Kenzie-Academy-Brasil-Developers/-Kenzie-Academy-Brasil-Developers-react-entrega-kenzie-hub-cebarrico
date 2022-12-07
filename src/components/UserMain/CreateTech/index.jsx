@@ -2,10 +2,8 @@ import { useContext, useState } from "react";
 import { ModalTech } from "../ModalAddTech";
 
 import { CreateTechContainer } from "./createTechDiv";
-import { TechContext } from "../../../context/TechContext";
 
 export const CreateTech = () => {
-  const { addTech } = useContext(TechContext);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function openModal() {
