@@ -1,5 +1,7 @@
 import { createContext, useContext } from "react";
 
+import { toast } from "react-toastify";
+
 import { api } from "../services/api";
 
 import { AuthContext } from "./AuthContext";
@@ -18,10 +20,10 @@ export const TechProvider = ({ children }) => {
           authorization: `Bearer ${token}`,
         },
       });
-
+      toast.success("Tecnologia adcionada com sucesso!");
       setTech((oldTechs) => [...oldTechs, response.data]);
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   }
   async function updateTech(data, id) {
@@ -46,8 +48,9 @@ export const TechProvider = ({ children }) => {
       });
 
       setTech(newArr);
+      toast.success("Tecnologia atualizada com sucesso!");
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   }
 
@@ -58,8 +61,10 @@ export const TechProvider = ({ children }) => {
           authorization: `Bearer ${token}`,
         },
       });
+      toast.success("Tecnologia foi deletada!");
+      return response;
     } catch (error) {
-      console.error(error);
+      toast.error(error.response.data.message);
     }
   }
 

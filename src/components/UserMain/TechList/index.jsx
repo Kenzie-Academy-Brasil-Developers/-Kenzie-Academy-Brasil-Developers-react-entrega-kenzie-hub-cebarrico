@@ -11,10 +11,6 @@ export const TechList = () => {
 
   const { techs } = useContext(AuthContext);
 
-  function openModal(tech) {
-    setCurrentTech(tech);
-    setModalIsOpen(true);
-  }
   function closeModal() {
     setModalIsOpen(false);
   }
