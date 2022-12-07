@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }) => {
         toast.success("Conta criada com sucesso!");
 
         navigate("/");
+        return response;
       } catch (err) {
         toast.error(err.response.data.message);
       }

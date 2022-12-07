@@ -6,15 +6,12 @@ import { AuthContext } from "../../../../context/AuthContext";
 import { UpdateContainer } from "./updataContainer";
 
 export const UpdateButton = ({ close, id }) => {
-  const { deleteTech, updateTech } = useContext(TechContext);
+  const { deleteTech } = useContext(TechContext);
   const { techs, setTech } = useContext(AuthContext);
 
-  function removeItem() {
-    const removeList = setTech(techs.filter((tech) => tech.id !== id));
-  }
-
   function deleteItem() {
-    removeItem();
+    const removeList = setTech(techs.filter((tech) => tech.id !== id));
+
     deleteTech(id);
     close();
   }

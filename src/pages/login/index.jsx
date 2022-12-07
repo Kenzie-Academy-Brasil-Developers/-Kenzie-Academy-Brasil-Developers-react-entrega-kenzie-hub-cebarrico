@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 import { FormDefault } from "../../styles/form";
 import { loginSchema } from "./LoginSchema";
-import { ButtonDefault, ButtonDefaultBlack } from "../../styles/button";
+import { ButtonDefault } from "../../styles/button";
 
 import { Input } from "../../components/Inputs";
 

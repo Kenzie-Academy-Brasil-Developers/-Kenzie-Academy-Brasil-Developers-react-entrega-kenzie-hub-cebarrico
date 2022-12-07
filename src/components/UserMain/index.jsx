@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 
 import { SectionMain } from "./sectionMain";
 import { TechList } from "./TechList";

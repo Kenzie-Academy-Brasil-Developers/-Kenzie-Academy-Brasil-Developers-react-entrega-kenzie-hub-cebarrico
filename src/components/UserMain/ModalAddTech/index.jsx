@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { ModalContainer } from "./modalContainer";
 import { Input } from "../../Inputs";
@@ -15,7 +15,7 @@ export const ModalTech = ({ type, close, id, value }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { isDirty, isValid },
   } = useForm({
     mode: "onBlur",
   });
@@ -50,8 +50,7 @@ export const ModalTech = ({ type, close, id, value }) => {
           <Input
             type={"text"}
             label={"Tecnologia"}
-            placeholder={"Digite a tecnologia"}
-            value={value}
+            placeholder={value}
             disabled="disabled"
           />
         )}
