@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 
-import { api } from "../../../services/api";
 import { ModalContainer } from "./modalContainer";
 import { Input } from "../../Inputs";
 import { FormDefault } from "../../../styles/form";
@@ -9,12 +8,9 @@ import { UpdateButton } from "./UdptadeButton";
 import { CloseButton } from "../../../styles/button";
 
 import { TechContext } from "../../../context/TechContext";
-import { AuthContext } from "../../../context/AuthContext";
 
 export const ModalTech = ({ type, close, id, value }) => {
-  const { addTech } = useContext(TechContext);
-  const { user } = useContext(AuthContext);
-  const [tech, setTech] = useState({ user });
+  const { addTech, updateTech } = useContext(TechContext);
 
   const {
     register,
@@ -24,24 +20,6 @@ export const ModalTech = ({ type, close, id, value }) => {
     mode: "onBlur",
   });
 
-  function reload() {
-    window.location.reload(false);
-  }
-  async function updateTech(data) {
-    const token = localStorage.getItem("token");
-    console.log(id);
-    console.log(data);
-    try {
-      const response = await api.put(`/users/techs/${id}`, data, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
-    }
-  }
   return (
     <ModalContainer>
       <div>
@@ -51,8 +29,14 @@ export const ModalTech = ({ type, close, id, value }) => {
       <FormDefault
         onSubmit={
           type === "Cadastrar Tecnologia"
-            ? handleSubmit(addTech)
-            : handleSubmit(updateTech)
+            ? handleSubmit((event) => {
+                addTech(event);
+                close();
+              })
+            : handleSubmit((event) => {
+                updateTech(event, id);
+                close();
+              })
         }
       >
         {type === "Cadastrar Tecnologia" ? (
@@ -68,6 +52,7 @@ export const ModalTech = ({ type, close, id, value }) => {
             label={"Tecnologia"}
             placeholder={"Digite a tecnologia"}
             value={value}
+            disabled="disabled"
           />
         )}
 
@@ -85,12 +70,11 @@ export const ModalTech = ({ type, close, id, value }) => {
             type="submit"
             disabled={!isDirty || !isValid}
             className="addTech"
-            // onClick={reload}
           >
             Cadastrar Tecnologia
           </button>
         ) : (
-          <UpdateButton id={id} />
+          <UpdateButton close={close} id={id} />
         )}
       </FormDefault>
     </ModalContainer>

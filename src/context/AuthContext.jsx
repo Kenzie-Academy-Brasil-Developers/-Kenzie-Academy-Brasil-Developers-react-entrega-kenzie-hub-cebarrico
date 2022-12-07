@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { api } from "../services/api";
@@ -9,9 +9,11 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [techs, setTech] = useState([]);
 
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("token");
@@ -26,6 +28,9 @@ export const AuthProvider = ({ children }) => {
             authorization: `Bearer ${token}`,
           },
         });
+
+        setTech(data.techs);
+
         setUser(data);
       } catch (error) {
         console.log(error);
@@ -45,8 +50,8 @@ export const AuthProvider = ({ children }) => {
 
         setUser(userResponse);
         localStorage.setItem("token", token);
-
-        navigate("/home");
+        const toNavigate = location.state?.from?.pathname || "/home";
+        navigate(toNavigate, { replace: true });
       } catch (err) {
         toast.error("Usuario ou senha incorretos");
         console.error(err);
@@ -70,7 +75,9 @@ export const AuthProvider = ({ children }) => {
     makeRegister();
   }
   return (
-    <AuthContext.Provider value={{ login, registerRequest, user, loading }}>
+    <AuthContext.Provider
+      value={{ login, registerRequest, user, loading, techs, setTech }}
+    >
       {children}
     </AuthContext.Provider>
   );
