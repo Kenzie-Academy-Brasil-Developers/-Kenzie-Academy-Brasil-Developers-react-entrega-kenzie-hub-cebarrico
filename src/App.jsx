@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 
-import { RoutesMain } from "./routes";
+import { RoutesMain as Routes } from "./routes";
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -13,7 +13,7 @@ function App() {
     <>
       <GlobalStyles />
       <AuthProvider>
-        <RoutesMain />
+        <Routes />
       </AuthProvider>
       <ToastContainer
         position="top-right"

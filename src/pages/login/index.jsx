@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,6 +17,7 @@ import { LogoStyle } from "../../styles/logo";
 export const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
 
   const {
     register,
@@ -25,6 +26,18 @@ export const LoginPage = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    }
+    setLoading(false);
+  }, [navigate]);
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <main style={{ height: "100vh" }}>

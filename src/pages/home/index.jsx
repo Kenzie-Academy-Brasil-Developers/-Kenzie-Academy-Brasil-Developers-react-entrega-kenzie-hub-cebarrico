@@ -10,25 +10,18 @@ import { UserMain } from "../../components/UserMain";
 
 export const HomePage = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   const { user, loading } = useContext(AuthContext);
 
-  if (loading) {
-    return null;
-  }
+  return (
+    <main>
+      <NavHeader path="login" />
+      <UserHeader name={user.name} module={user.course_module} />
+      <TechProvider>
+        <UserMain />
+      </TechProvider>
+    </main>
+  );
 
-  if (user) {
-    return (
-      <main>
-        <NavHeader path="login" />
-        <UserHeader name={user.name} module={user.course_module} />
-        <TechProvider>
-          <UserMain />
-        </TechProvider>
-      </main>
-    );
-  } else {
-    navigate("/");
-  }
+  navigate("/");
 };
