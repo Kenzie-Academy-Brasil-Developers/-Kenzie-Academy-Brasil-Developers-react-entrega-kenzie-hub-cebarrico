@@ -1,8 +1,9 @@
 import styled from "styled-components";
-export const ModalBackground = styled.div`
-  width: 100%;
-  height: 100vh;
 
+export const ModalBackground = styled.div`
+  width: 90%;
+  height: 100vh;
+  max-width: 1200px;
   position: fixed;
   top: 0;
   z-index: 10;
