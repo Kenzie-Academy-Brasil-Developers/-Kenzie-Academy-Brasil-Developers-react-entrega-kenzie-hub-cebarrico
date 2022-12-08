@@ -5,10 +5,10 @@ import { TechList } from "./TechList";
 
 import { CreateTech } from "./CreateTech";
 
-import { AuthContext } from "../../context/AuthContext";
+import { TechContext } from "../../context/TechContext";
 
 export const UserMain = () => {
-  const { techs } = useContext(AuthContext);
+  const { techs } = useContext(TechContext);
 
   const length = techs.length;
 

@@ -3,7 +3,7 @@ import { useState, useContext } from "react";
 import { MainTechList } from "./techList";
 import { ModalTech } from "../ModalAddTech";
 
-import { AuthContext } from "../../../context/AuthContext";
+import { TechContext } from "../../../context/TechContext";
 
 import Trash from "../../../assets/img/trash.svg";
 
@@ -11,7 +11,7 @@ export const TechList = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentTech, setCurrentTech] = useState({});
 
-  const { techs } = useContext(AuthContext);
+  const { techs } = useContext(TechContext);
 
   function closeModal() {
     setModalIsOpen(false);
