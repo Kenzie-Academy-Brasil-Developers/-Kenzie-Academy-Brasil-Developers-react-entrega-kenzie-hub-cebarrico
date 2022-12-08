@@ -1,5 +1,13 @@
 import styled from "styled-components";
+export const ModalBackground = styled.div`
+  width: 100%;
+  height: 100vh;
 
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(18, 18, 20, 0.5); ;
+`;
 export const ModalContainer = styled.div`
   width: 90%;
 
