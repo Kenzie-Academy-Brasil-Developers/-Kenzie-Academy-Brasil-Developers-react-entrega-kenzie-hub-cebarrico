@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [user, setUser] = useState(null);
-  const [techs, setTech] = useState([]);
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -28,8 +27,6 @@ export const AuthProvider = ({ children }) => {
             authorization: `Bearer ${token}`,
           },
         });
-
-        setTech(data.techs);
 
         setUser(data);
       } catch (error) {
@@ -76,9 +73,7 @@ export const AuthProvider = ({ children }) => {
     makeRegister();
   }
   return (
-    <AuthContext.Provider
-      value={{ login, registerRequest, user, loading, techs, setTech }}
-    >
+    <AuthContext.Provider value={{ login, registerRequest, user, loading }}>
       {children}
     </AuthContext.Provider>
   );

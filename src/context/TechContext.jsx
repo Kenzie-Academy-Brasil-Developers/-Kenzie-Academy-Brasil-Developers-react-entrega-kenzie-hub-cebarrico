@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 import { toast } from "react-toastify";
 
@@ -9,9 +9,10 @@ import { AuthContext } from "./AuthContext";
 export const TechContext = createContext({});
 
 export const TechProvider = ({ children }) => {
-  const { techs, setTech } = useContext(AuthContext);
-
+  const { user } = useContext(AuthContext);
+  const [techs, setTech] = useState(user.techs);
   const token = localStorage.getItem("token");
+  console.log(techs);
 
   async function addTech(data) {
     try {
