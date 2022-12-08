@@ -8,6 +8,8 @@ export const Nav = styled.div`
   width: 80%;
   max-width: 369px;
 
+  animation: appear 1s ease-in-out;
+
   button {
     width: 80px;
     height: 32px;
@@ -42,6 +44,15 @@ export const Nav = styled.div`
     font-weight: 600;
 
     cursor: pointer;
+
+    @keyframes appear {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
   }
 `;
 
@@ -54,6 +65,16 @@ export const NavUser = styled.div`
   max-width: 1200px;
 
   padding: 30px 0;
+
+  animation: appear 1s ease-in-out;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   button {
     width: 80px;

@@ -13,6 +13,8 @@ export const FormDefault = styled.form`
 
   padding: 34px 5px;
 
+  animation: appear 1s ease-in-out;
+
   h1 {
     font-size: 16px;
     color: var(--color-grey-0);
@@ -98,5 +100,14 @@ export const FormDefault = styled.form`
     margin-bottom: 32px;
 
     cursor: pointer;
+  }
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;
