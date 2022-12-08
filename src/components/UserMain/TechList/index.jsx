@@ -5,6 +5,8 @@ import { ModalTech } from "../ModalAddTech";
 
 import { AuthContext } from "../../../context/AuthContext";
 
+import Trash from "../../../assets/img/trash.svg";
+
 export const TechList = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentTech, setCurrentTech] = useState({});
@@ -26,7 +28,10 @@ export const TechList = () => {
           }}
         >
           <h3>{tech.title}</h3>
-          <span>{tech.status}</span>
+          <div className="statusContainer">
+            <span>{tech.status}</span>
+            <img src={Trash} alt="" />
+          </div>
         </li>
       ))}
 
