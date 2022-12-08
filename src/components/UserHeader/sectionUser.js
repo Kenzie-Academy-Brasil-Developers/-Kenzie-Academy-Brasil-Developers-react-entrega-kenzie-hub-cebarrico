@@ -13,6 +13,17 @@ export const SectionUser = styled.section`
   padding: 30px 0;
   margin-bottom: 30px;
 
+  animation: appear 1s ease-in-out;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
   div {
     width: 90%;
     max-width: 1200px;
